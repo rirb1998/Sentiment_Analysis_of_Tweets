@@ -1,5 +1,6 @@
 import itertools
-from nltk.corpus import stopwords  # need to use nltk downloader using console
+# need to use nltk downloader using console
+from nltk.corpus import stopwords  
 from tweepy import Cursor, API, OAuthHandler
 from nltk import bigrams
 import re
@@ -14,7 +15,7 @@ from textblob import TextBlob
 def remove_url(tweet):
     return " ".join(re.sub("([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", tweet).split())
 
-def authenticate_twitter_app():
+def authenticate_twitter_app(): //
     auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
     auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
     return auth
@@ -24,8 +25,6 @@ def search(auth,search_words):
     tweets = Cursor(api.search, q=search_words, lang="en").items(10)
     return tweets
 
-#auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
-#auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
 
 auth= authenticate_twitter_app()
 #api = API(auth, wait_on_rate_limit=True)
